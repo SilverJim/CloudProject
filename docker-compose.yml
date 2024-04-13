@@ -53,9 +53,9 @@ services:
       - '8082:8081'
   spark-client:
     build: .
-    hostname: worker2
+    hostname: client
     environment:
-      - spark_mode=client
+      - spark_mode=worker
       - spark_master_url=spark://master:7077
       - spark_worker_memory=1g
       - spark_worker_cores=1
