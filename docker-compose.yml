@@ -66,4 +66,4 @@ services:
     volumes:
       - ~/docker/spark/share:/opt/share
     ports:
-      - '8082:8081'
+      - '8083:8081'
