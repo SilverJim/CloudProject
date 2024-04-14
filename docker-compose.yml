@@ -65,5 +65,11 @@ services:
       - spark_ssl_enabled=no
     volumes:
       - ~/docker/spark/share:/opt/share
+      - type: bind
+        source: ./data_processing.py
+        target: /opt/data_processing.py
+      - type: bind
+        source: ./run.sh
+        target: /opt/run.sh
     ports:
       - '8083:8081'
