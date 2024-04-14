@@ -16,4 +16,4 @@ selectExprs = [((col(c) - means[c]) / stddevs[c]).alias(c) if c in columns_to_no
 df = df.select(selectExprs)
 
 df = df.toJSON()
-df.write.text("/processed_data/")
+df.saveAsTextFile("/processed_data/")
