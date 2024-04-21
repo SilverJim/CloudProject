@@ -1,3 +1,6 @@
+"""
+Data processing script using PySpark to normalize the data and save it in a new directory.
+"""
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, mean, stddev
 
@@ -12,7 +15,10 @@ columns_to_normalize = ['avgMeasuredTime', 'avgSpeed', 'medianMeasuredTime', 've
 means = df.select([mean(c).alias(c) for c in columns_to_normalize]).collect()[0]
 stddevs = df.select([stddev(c).alias(c) for c in columns_to_normalize]).collect()[0]
 
-selectExprs = [((col(c) - means[c]) / stddevs[c]).alias(c) if c in columns_to_normalize else col(c) for c in df.columns]
+selectExprs = [
+    ((col(c) - means[c]) / stddevs[c]).alias(c)
+    if c in columns_to_normalize else col(c) for c in df.columns
+]
 df = df.select(selectExprs)
 
 df = df.toJSON()
