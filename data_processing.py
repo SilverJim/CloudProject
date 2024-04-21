@@ -1,5 +1,5 @@
 """
-Data processing script using PySpark to normalize the data and save it in a new directory.
+Data processing script using PySpark to normalize the data and save it into HDFS.
 """
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, mean, stddev
